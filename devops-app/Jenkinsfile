@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                dir('devops-app') {
+                    bat 'mvnw.cmd clean package'
+                }
+            }
+        }
+    }
+}
