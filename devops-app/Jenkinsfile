@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
@@ -11,9 +10,11 @@ pipeline {
 
         stage('Build') {
             steps {
-                    bat 'mvnw.cmd clean package'
+                dir('devops-app') {
+                    sh 'chmod +x mvnw'
+                    sh './mvnw clean package'
                 }
             }
         }
     }
-
+}
